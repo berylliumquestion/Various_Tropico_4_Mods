@@ -16,7 +16,7 @@ function fixPrisonModeDescriptions()
 end
 
 function fixArrestDescription()
-    EdictArrest["rollover"] = "A policeman will arrest and detain the target for 3 or 20 years if sent to regular prison, or a million years if sent to labor camp. Sentence only begins as soon as arestee enters the prison. This will decrease the respect of the target's family. May or may not decrease respect of target depending on building mode chosen if sent to regular prison."
+    EdictArrest["rollover"] = "A policeman will arrest and detain the target for 3 or 20 years if sent to regular prison, or a million years if sent to labor camp. Sentence only begins as soon as arrestee enters the prison. This will decrease the respect of the target's family. May or may not decrease respect of target depending on building mode chosen if sent to regular prison."
 end
 
 local FiredOnce = false

@@ -5,3 +5,6 @@ BetterDescriptions.lua - VER: 0.0.0
 January 19, 2023
 Installer.bat - VER: 0.0.0
     - New automated process for installing mods. Will be expanded in the future.
+
+BetterDescriptions.lua - VER: 0.1.0
+    - Fixes the description of "Tropico First" mode of Immigration Office.

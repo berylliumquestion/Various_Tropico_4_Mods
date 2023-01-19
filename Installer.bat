@@ -3,8 +3,6 @@
 setlocal EnableDelayedExpansion
 
 set mods[0]=BetterDescriptions
-set choice=
-set choices=
 
 for  /L %%i in (0, 1, 0) do (
 	set /p choice="Install !mods[%%i]!? (y/n): "

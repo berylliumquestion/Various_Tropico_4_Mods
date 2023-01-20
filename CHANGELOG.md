@@ -8,3 +8,6 @@ Installer.bat - VER: 0.0.0
 
 BetterDescriptions.lua - VER: 0.1.0
     - Fixes the description of "Tropico First" mode of Immigration Office.
+
+Installer.bat - VER: 0.0.1
+    - Fixed bug that didn't actually detect whether game folder existed.

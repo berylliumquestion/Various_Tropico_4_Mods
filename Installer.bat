@@ -92,7 +92,7 @@ for /L %%i in (0, 1, 11) do (
     hpk\hpk.exe create "%~1\dlc\!dlc_hpks[%%i]!" "%~1\dlc\!dlc_hpks[%%i]!.hpk" --dont-compress-files
 )
 
-hpk\hpk.exe create "%~1\Packs\boot\persist\Game" "%~1\Packs\boot\persist\Game.hpk"
+hpk\hpk.exe create "%~1\Packs\boot\persist\Game" "%~1\Packs\boot\persist\Game.hpk" --dont-compress-files
 
 if exist "%~1\dlc\NuclearTakedown.hpk" (
     copy mods\NoFreeImmigrantsMeansNoFreeImmigrants.lua "%~1\NuclearTakedown\game\NoFreeImmigrantsMeansNoFreeImmigrants.lua"

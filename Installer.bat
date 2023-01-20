@@ -12,22 +12,27 @@ if not exist hpk/ (
 )
 
 set mods[0]=BetterDescriptions
+set mods[1]=NoFreeImmigrants
 
-for  /L %%i in (0, 1, 0) do (
+for  /L %%i in (0, 1, 1) do (
     set /p choice="Install !mods[%%i]!? (y/n): "
     set choices[%%i]=!choice!
 )
 
 if exist "C:\GOG Games\Tropico 4\" (
     set directory=C:\GOG Games\Tropico 4
-    if not exist "!directory!\game\" (
-        mkdir "!directory!\game\"
+    if not exist "!directory!\game" (
+        mkdir "!directory!\game"
     )
     
-    for /L %%i in (0, 1, 0) do (
+    for /L %%i in (0, 1, 1) do (
         if !choices[%%i]!==y (
             if !mods[%%i]!==BetterDescriptions (
                 copy /v "mods\BetterDescriptions.lua" "!directory!\game\BetterDescriptions.lua"
+            )
+            
+            if !mods[%%i]!==NoFreeImmigrants (
+                call :InstallNoFreeImmigrants "!directory!"
             )
             
         ) else (
@@ -40,3 +45,59 @@ if exist "C:\GOG Games\Tropico 4\" (
 )
 
 endlocal
+goto :EOF
+
+:InstallNoFreeImmigrants
+
+set dlc_hpks[0]=Construction
+set dlc_hpks[1]=EastPoint
+set dlc_hpks[2]=Expansion
+set dlc_hpks[3]=Megalopolis
+set dlc_hpks[4]=Military
+set dlc_hpks[5]=NuclearTakedown
+set dlc_hpks[6]=PirateHaven
+set dlc_hpks[7]=Plantation
+set dlc_hpks[8]=Propaganda
+set dlc_hpks[9]=Update1
+set dlc_hpks[10]=Vigilante
+set dlc_hpks[11]=Voodoo
+
+if not exist "%~1\dlc.bak\" (
+    echo Backing up hpks!
+    echo %~1
+    robocopy "%~1\dlc" "%~1\dlc.bak"
+    copy "%~1\Packs\boot\persist\Game.hpk" "%~1\Packs\boot\persist\Game.hpk.bak"
+)
+
+for /L %%i in (0, 1, 11) do (
+    echo Extracting !dlc_hpks[%%i]!.hpk...
+    hpk\hpk.exe extract "%~1\dlc\!dlc_hpks[%%i]!.hpk" "%~1\dlc\!dlc_hpks[%%i]!"
+)
+
+hpk\hpk.exe extract "%~1\Packs\boot\persist\Game.hpk" "%~1\Packs\boot\persist\Game"
+
+for /L %%i in (0, 1, 11) do (
+    echo Deleting minister events from !dlc_hpks[%%i]!.hpk...
+    if not !dlc_hpks[%%i]!==Expansion (
+        del "%~1\dlc\!dlc_hpks[%%i]!\!dlc_hpks[%%i]!\game\SequenceList\Minister_events.lua
+    ) else (
+        del "%~1\dlc\!dlc_hpks[%%i]!\ex\game\SequenceList\Minister_events.lua
+    )
+)
+
+del "%~1\Packs\boot\persist\Game\game\SequenceList\Minister_events.lua"
+
+for /L %%i in (0, 1, 11) do (
+    echo Repacking !dlc_hpks[%%i]!.hpk...
+    hpk\hpk.exe create "%~1\dlc\!dlc_hpks[%%i]!" "%~1\dlc\!dlc_hpks[%%i]!.hpk" --dont-compress-files
+)
+
+hpk\hpk.exe create "%~1\Packs\boot\persist\Game" "%~1\Packs\boot\persist\Game.hpk"
+
+if exist "%~1\dlc\NuclearTakedown.hpk" (
+    copy mods\NoFreeImmigrantsMeansNoFreeImmigrants.lua "%~1\NuclearTakedown\game\NoFreeImmigrantsMeansNoFreeImmigrants.lua"
+)
+
+exit /B 0
+
+:EOF

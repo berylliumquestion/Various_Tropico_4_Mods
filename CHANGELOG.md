@@ -11,3 +11,13 @@ BetterDescriptions.lua - VER: 0.1.0
 
 Installer.bat - VER: 0.0.1
     - Fixed bug that didn't actually detect whether game folder existed.
+
+NoFreeImmigrantsMeansNoFreeImmigrants - VER: 0.0.0
+    - Makes it so that there truly are no free immigrants at all. Normally the 
+      game will force immigrants upon you in the form of timeline events and an
+      education minister event whether you actually want them or not.
+    - Unfortunately, all minister events are disabled with this mod at the moment.
+      Reimplementation of minister events in another mod pending.
+
+Installer.bat - VER: 0.1.0
+    - Function to install newest mod added.

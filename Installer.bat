@@ -20,8 +20,8 @@ for  /L %%i in (0, 1, 0) do (
 
 if exist "C:\GOG Games\Tropico 4\" (
     set directory=C:\GOG Games\Tropico 4
-    if not exist "!directory!\game" (
-        mkdir "!directory!\game"
+    if not exist "!directory!\game\" (
+        mkdir "!directory!\game\"
     )
     
     for /L %%i in (0, 1, 0) do (

@@ -27,7 +27,7 @@ if exist "C:\GOG Games\Tropico 4\" (
     for /L %%i in (0, 1, 0) do (
         if !choices[%%i]!==y (
             if !mods[%%i]!==BetterDescriptions (
-                copy /v "game\BetterDescriptions.lua" "C:\GOG Games\Tropico 4\game\BetterDescriptions.lua"
+                copy /v "mods\BetterDescriptions.lua" "!directory!\game\BetterDescriptions.lua"
             )
             
         ) else (

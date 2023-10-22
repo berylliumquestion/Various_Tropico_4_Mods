@@ -23,6 +23,7 @@ if %DirectoryChoice%==1 (
     set directory=C:\GOG Games\Tropico 4
 ) else if %DirectoryChoice%==2 (
     echo Steam install
+    REM If anyone uses Steam, could you fix this?
     set directory="%ProgramFiles(x86)%\Steam\steamapps\common"
 ) else (
     echo Please specify location...

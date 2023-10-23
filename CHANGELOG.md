@@ -26,3 +26,5 @@ October 23, 2023
 NoFreeImmigrantsMeansNoFreeImmigrants - VER: 1.0.0
     - Minister events that cause immigration, I.E. the education minister, now
       work as intended.
+
+Installer.bat - VER: 0.2.0
